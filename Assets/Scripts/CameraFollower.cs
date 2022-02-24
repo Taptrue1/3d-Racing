@@ -12,7 +12,10 @@ public class CameraFollower : MonoBehaviour
     {
         transform.position = _target.position + _offset;
     }
-    private void FixedUpdate() => Move();
+    private void FixedUpdate()
+    { 
+        Move();
+    }
 
     private void Move()
     {
