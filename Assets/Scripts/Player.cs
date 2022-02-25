@@ -1,22 +1,33 @@
+using System;
 using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public Action FinishPassed;
+    public Action FuelIsOver;
+
+    [SerializeField] private RearWheelDrive _rearWheelDrive;
     [SerializeField, Range(0.01f, 0.1f)] private float _fuelReduceSpeed;
 
     private CustomValue _fuel;
     private CustomValue _coins;
 
-    private void Update()
+    private void FixedUpdate()
     {
         ReduceFuel();
+        _rearWheelDrive.SetFuelValue(_fuel.Value);
+        
+        if(_fuel.Value == 0)
+            FuelIsOver?.Invoke();
     }
     private void OnTriggerEnter(Collider other)
     {
-        if(other.TryGetComponent(out Coin coin))
+        if (other.TryGetComponent(out Coin coin))
             _coins.Add(1);
-        else if(other.TryGetComponent(out Fuel fuel))
+        else if (other.TryGetComponent(out Fuel fuel))
             _fuel.SetValue(1);
+        else if (other.TryGetComponent(out Finish finish))
+            FinishPassed?.Invoke();
     }
 
     public void Init(CustomValue fuel, CustomValue coins)

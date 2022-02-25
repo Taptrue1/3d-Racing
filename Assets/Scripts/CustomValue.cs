@@ -40,7 +40,7 @@ public class CustomValue
         if (_isRange)
             _value = UnityEngine.Mathf.Clamp(_value, _minValue, _maxValue);
 
-        ValueChanged?.Invoke(value);
+        ValueChanged?.Invoke(_value);
     }
     public void SetValue(float value)
     {
@@ -49,13 +49,13 @@ public class CustomValue
     }
     public void SetMaxValue()
     {
-        if(_isRange)
-            _value = _maxValue;
+        if (_isRange)
+            SetValue(_maxValue);
     }
     public void SetMinValue()
     {
-        if(_isRange)
-            _value = _minValue;
+        if (_isRange)
+            SetValue(_minValue);
     }
 
     private bool IsLessThanZero(float value)

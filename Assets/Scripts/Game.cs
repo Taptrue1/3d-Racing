@@ -4,7 +4,7 @@ using PathCreation;
 public class Game : MonoBehaviour
 {
     [SerializeField] private Player _player;
-    [SerializeField] private PathCreator _path;
+    [SerializeField] private PathCreator _pathCreator;
     [Header("Views")]
     [SerializeField] private FuelView _fuelView;
     [SerializeField] private CoinView _coinView;
@@ -20,7 +20,7 @@ public class Game : MonoBehaviour
         _fuel = new CustomValue(1, true, 1, 0);
         _coins = new CustomValue();
         _pathPassed = new CustomValue();
-        _pathCounter = new PathCounter(_player.transform, _path);
+        _pathCounter = new PathCounter(_player.transform, _pathCreator);
 
         _fuelView.Init(_fuel);
         _coinView.Init(_coins);

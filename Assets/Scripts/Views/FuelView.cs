@@ -12,7 +12,6 @@ public class FuelView : MonoBehaviour
 
     private void OnValueChanged(float value)
     {
-        var resultValue = Mathf.Ceil(value);
-        _progressBar.value = resultValue;
+        _progressBar.value = value;
     }
 }

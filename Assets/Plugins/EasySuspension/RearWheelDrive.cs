@@ -10,6 +10,7 @@ public class RearWheelDrive : MonoBehaviour
 	[SerializeField] private WheelCollider[] _leftWheels;
 
 	private List<WheelCollider> _allWheels;
+	private float _fuelValue;
 
 	private void Start()
 	{
@@ -30,13 +31,23 @@ public class RearWheelDrive : MonoBehaviour
 		float angle = _maxAngle * Input.GetAxis("Horizontal");
 		float torque = _maxTorque * Input.GetAxis("Vertical");
 
-		foreach(var wheel in _allWheels)
-        {
+		if(_fuelValue > 0)
+			UpdateWheels(angle, torque);
+	}
+
+	public void SetFuelValue(float value)
+    {
+		_fuelValue = value;
+    }
+
+	private void UpdateWheels(float angle, float torque)
+    {
+		foreach (var wheel in _allWheels)
+		{
 			var isRightWheel = IsRightWheel(wheel);
 			UpdateWheel(wheel, angle, torque, isRightWheel);
 		}
 	}
-
 	private void UpdateWheel(WheelCollider wheel, float angle, float torque, bool isRight)
     {
 		SetWheelSteerAngle(wheel, angle, isRight);
