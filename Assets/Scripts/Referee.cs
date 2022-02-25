@@ -13,6 +13,10 @@ public class Referee : MonoBehaviour
         _player.FuelIsOver += OnLose;
         _player.FinishPassed += OnWin;
     }
+    private void FixedUpdate()
+    {
+        CheckPlayerInBounds();
+    }
 
     private void OnWin()
     {
