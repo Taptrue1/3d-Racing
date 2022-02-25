@@ -11,7 +11,8 @@ public class Coin : MonoBehaviour
     {
         Animate();
     }
-    private void OnTriggerEnter(Collider other)
+
+    public void Destroy()
     {
         _rotateTween.Kill();
         Destroy(gameObject);

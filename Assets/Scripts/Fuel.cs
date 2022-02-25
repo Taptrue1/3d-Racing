@@ -11,7 +11,8 @@ public class Fuel : MonoBehaviour
     {
         Animate();
     }
-    private void OnTriggerEnter(Collider other)
+
+    public void Destroy()
     {
         _moveTween.Kill();
         Destroy(gameObject);

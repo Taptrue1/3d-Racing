@@ -23,9 +23,15 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent(out Coin coin))
+        {
             _coins.Add(1);
+            coin.Destroy();
+        }
         else if (other.TryGetComponent(out Fuel fuel))
+        {
             _fuel.SetValue(1);
+            fuel.Destroy();
+        }
         else if (other.TryGetComponent(out Finish finish))
             FinishPassed?.Invoke();
     }
