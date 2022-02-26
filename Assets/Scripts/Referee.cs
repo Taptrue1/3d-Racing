@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using PathCreation;
+using TMPro;
 
 public class Referee : MonoBehaviour
 {
@@ -7,9 +8,12 @@ public class Referee : MonoBehaviour
     [SerializeField] private PathCreator _pathCreator;
     [SerializeField] private float _sidePositionOffset;
     [SerializeField] private float _minYBound;
+    [SerializeField] private TextMeshProUGUI _gameResultTextField;
 
     private void Awake()
     {
+        _gameResultTextField.text = "";
+
         _player.FuelIsOver += OnLose;
         _player.FinishPassed += OnWin;
     }
@@ -20,12 +24,13 @@ public class Referee : MonoBehaviour
 
     private void OnWin()
     {
-        Debug.Log("You win");
+        Time.timeScale = 0;
+        _gameResultTextField.text = "YOU WIN!";
     }
     private void OnLose()
     {
         Time.timeScale = 0;
-        Debug.Log("You lose");
+        _gameResultTextField.text = "YOU LOSE!";
     }
     private void CheckPlayerInBounds()
     {
