@@ -28,8 +28,9 @@ public class Game : MonoBehaviour
 
         _player.Init(_fuel, _coins);
     }
+
     private void FixedUpdate()
     {
-        _pathPassed.Add(_pathCounter.GetPassedPath());
+        _pathPassed.SetValue(_pathCounter.GetPassedPath());
     }
 }

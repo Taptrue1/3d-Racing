@@ -5,6 +5,8 @@ public class Fuel : MonoBehaviour
 {
     [SerializeField] private float _animationDuration;
 
+    [SerializeField] private float _animationOffset;
+
     private Tween _moveTween;
 
     private void Start()
@@ -23,7 +25,7 @@ public class Fuel : MonoBehaviour
         var startPosition = transform.position;
         var moveTween = DOTween.Sequence();
 
-        moveTween.Append(transform.DOMoveY(startPosition.y + 1, _animationDuration).SetEase(Ease.InOutSine));
+        moveTween.Append(transform.DOMoveY(startPosition.y + _animationOffset, _animationDuration).SetEase(Ease.InOutSine));
         moveTween.Append(transform.DOMoveY(startPosition.y, _animationDuration).SetEase(Ease.InOutSine));
         moveTween.SetLoops(-1);
 
